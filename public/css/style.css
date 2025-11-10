@@ -1,0 +1,562 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #4facfe 75%, #00f2fe 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+/* Floating hearts background */
+.hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.heart {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.2;
+    animation: floatHeart 20s infinite ease-in-out;
+}
+
+.heart:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.heart:nth-child(2) {
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.heart:nth-child(3) {
+    left: 50%;
+    animation-delay: 4s;
+}
+
+.heart:nth-child(4) {
+    left: 70%;
+    animation-delay: 6s;
+}
+
+.heart:nth-child(5) {
+    left: 90%;
+    animation-delay: 8s;
+}
+
+.heart:nth-child(6) {
+    left: 20%;
+    animation-delay: 10s;
+}
+
+.heart:nth-child(7) {
+    left: 60%;
+    animation-delay: 12s;
+}
+
+.heart:nth-child(8) {
+    left: 80%;
+    animation-delay: 14s;
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 0.2;
+    }
+
+    90% {
+        opacity: 0.2;
+    }
+
+    100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* App Container */
+.app-container {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Step Indicator */
+.step-indicator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 60px;
+    position: relative;
+    z-index: 10;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: all 0.5s ease;
+    position: relative;
+    z-index: 2;
+}
+
+.step-item.active .step-number {
+    background: rgba(255, 255, 255, 0.95);
+    border-color: white;
+    color: #667eea;
+    transform: scale(1.2);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.6);
+}
+
+.step-item.completed .step-number {
+    background: rgba(255, 255, 255, 0.8);
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+.step-item.completed .step-number::after {
+    content: '✓';
+    position: absolute;
+    color: #4caf50;
+    font-size: 1.5rem;
+}
+
+.step-line {
+    width: 80px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    margin-left: 10px;
+    transition: all 0.5s ease;
+    position: relative;
+}
+
+.step-item.active .step-line {
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.step-item.completed .step-line {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.step-item:last-child .step-line {
+    display: none;
+}
+
+/* Steps Wrapper */
+.steps-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    min-height: 400px;
+}
+
+.step-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    opacity: 0;
+    transform: translateY(30px);
+    pointer-events: none;
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.step-content.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+    position: relative;
+}
+
+.content-inner {
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 30px;
+    padding: 60px 40px;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+/* Floating Animations */
+.floating-animation {
+    animation: floatIn 1s ease-out;
+}
+
+.floating-animation-delay {
+    animation: floatIn 1s ease-out 0.2s both;
+}
+
+.floating-animation-delay-2 {
+    animation: floatIn 1s ease-out 0.4s both;
+}
+
+.floating-animation-delay-3 {
+    animation: floatIn 1s ease-out 0.6s both;
+}
+
+@keyframes floatIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.step-title {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    font-weight: 700;
+}
+
+.name-highlight {
+    color: #667eea;
+    text-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+}
+
+.step-subtitle {
+    font-size: 1.3rem;
+    color: #666;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+.step-message {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 40px;
+    font-weight: 400;
+}
+
+/* Button Wrapper */
+.button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+    position: relative;
+    min-height: 80px;
+}
+
+.step-button {
+    padding: 18px 45px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 50px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    font-weight: 600;
+    position: relative;
+    overflow: hidden;
+    min-width: 200px;
+    animation: floatButton 3s ease-in-out infinite;
+}
+
+@keyframes floatButton {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.step-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.3);
+    transform: translate(-50%, -50%);
+    transition: width 0.6s, height 0.6s;
+}
+
+.step-button:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+}
+
+.step-button:active {
+    transform: translateY(-2px) scale(1.02);
+}
+
+.step-button:active::before {
+    width: 300px;
+    height: 300px;
+}
+
+.surprise-button {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    box-shadow: 0 8px 25px rgba(245, 87, 108, 0.4);
+}
+
+.surprise-button:hover {
+    box-shadow: 0 12px 35px rgba(245, 87, 108, 0.5);
+}
+
+/* Running Button */
+.running-button {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+    box-shadow: 0 8px 25px rgba(250, 112, 154, 0.4);
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+    margin: 0;
+}
+
+.running-button:hover {
+    box-shadow: 0 12px 35px rgba(250, 112, 154, 0.5);
+}
+
+.catch-counter {
+    margin-top: 30px;
+    font-size: 1.1rem;
+    color: #666;
+}
+
+.catch-counter span {
+    font-weight: bold;
+    color: #667eea;
+    font-size: 1.3rem;
+}
+
+/* Floating Messages */
+.floating-messages {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+}
+
+.floating-message {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 30px;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    animation: floatUpMessage 3s ease-out forwards;
+    white-space: nowrap;
+}
+
+@keyframes floatUpMessage {
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) scale(0.8);
+    }
+}
+
+/* Surprise Modal */
+.surprise-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease;
+}
+
+.surprise-modal.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.modal-content {
+    background: white;
+    padding: 50px;
+    border-radius: 25px;
+    max-width: 500px;
+    text-align: center;
+    animation: modalSlideIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: #999;
+    border: none;
+    background: none;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.close-modal:hover {
+    color: #333;
+    background: rgba(0, 0, 0, 0.05);
+}
+
+.modal-content h2 {
+    color: #667eea;
+    margin-bottom: 20px;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+.modal-content p {
+    font-size: 1.2rem;
+    color: #555;
+    line-height: 1.8;
+    margin: 15px 0;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .step-title {
+        font-size: 2rem;
+    }
+
+    .step-subtitle {
+        font-size: 1.1rem;
+    }
+
+    .step-message {
+        font-size: 1.1rem;
+    }
+
+    .step-button {
+        padding: 15px 35px;
+        font-size: 1.1rem;
+        min-width: 180px;
+    }
+
+    .content-inner {
+        padding: 40px 25px;
+    }
+
+    .step-indicator {
+        gap: 10px;
+    }
+
+    .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .step-line {
+        width: 50px;
+    }
+
+    .modal-content {
+        padding: 40px 30px;
+        margin: 20px;
+    }
+}
+
+/* Page Transition Effect */
+.step-content.exiting {
+    opacity: 0;
+    transform: translateY(-30px);
+}

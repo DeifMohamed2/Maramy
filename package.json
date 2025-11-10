@@ -1,0 +1,26 @@
+{
+  "name": "salma-surprise-app",
+  "version": "1.0.0",
+  "description": "An interactive surprise page for Salma",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "keywords": [
+    "express",
+    "ejs",
+    "interactive",
+    "surprise"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "ngrok": "^5.0.0-beta.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
+  }
+}

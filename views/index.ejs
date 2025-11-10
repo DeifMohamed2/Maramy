@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surprise for <%= name %> 💖</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div class="hearts-container">
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💗</div>
+        <div class="heart">💝</div>
+        <div class="heart">💖</div>
+        <div class="heart">💕</div>
+        <div class="heart">💗</div>
+        <div class="heart">💝</div>
+    </div>
+
+    <div class="app-container">
+        <!-- Step Indicator -->
+        <div class="step-indicator">
+            <div class="step-item active" data-step="1">
+                <div class="step-number">1</div>
+                <div class="step-line"></div>
+            </div>
+            <div class="step-item" data-step="2">
+                <div class="step-number">2</div>
+                <div class="step-line"></div>
+            </div>
+            <div class="step-item" data-step="3">
+                <div class="step-number">3</div>
+                <div class="step-line"></div>
+            </div>
+            <div class="step-item" data-step="4">
+                <div class="step-number">4</div>
+            </div>
+        </div>
+
+        <!-- Step Content Container -->
+        <div class="steps-wrapper">
+            <!-- Step 1 -->
+            <div class="step-content active" data-step="1">
+                <div class="content-inner">
+                    <h1 class="step-title floating-animation">Hey Beautiful <span class="name-highlight"><%= name %>!</span> 💖</h1>
+                    <div class="button-wrapper floating-animation-delay-2">
+                        <button class="step-button" id="step1Btn">Let's Begin! 🌟💖</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div class="step-content" data-step="2">
+                <div class="content-inner">
+                    <h2 class="step-title floating-animation">Your Beautiful Eyes & Smile! 😊💖</h2>
+                    <p class="step-message floating-animation-delay">I love your beautiful eyes and your amazing smile! And I absolutely love it when you're laughing! 😄✨</p>
+                    <div class="button-wrapper floating-animation-delay-2">
+                        <button class="step-button" id="step2Btn">Continue ✨💖</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div class="step-content" data-step="3">
+                <div class="content-inner">
+                    <h2 class="step-title floating-animation">Ready for a Surprise? 🎁💖</h2>
+                    <p class="step-message floating-animation-delay">I made something special just for you! Your smile lights up everything! 😊💖</p>
+                    <div class="button-wrapper floating-animation-delay-2">
+                        <button class="step-button surprise-button" id="step3Btn">Get Surprise! 🎉💖</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div class="step-content" data-step="4">
+                <div class="content-inner">
+                    <h2 class="step-title floating-animation">Catch Me If You Can! 🏃‍♀️💖</h2>
+                    <p class="step-message floating-animation-delay">Try to catch the button! I love your laugh when you're having fun! 😄💪</p>
+                    <div class="button-wrapper floating-animation-delay-2">
+                        <button class="step-button running-button" id="runningBtn">Catch Me! 😄💖</button>
+                    </div>
+                    <div class="catch-counter floating-animation-delay-3">
+                        <p>Caught: <span id="catchCount">0</span> times! Keep going! 🎉💖</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Floating Messages -->
+        <div class="floating-messages" id="floatingMessages"></div>
+
+        <!-- Surprise Modal -->
+        <div class="surprise-modal" id="surpriseModal">
+            <div class="modal-content">
+                <button class="close-modal" id="closeModal">×</button>
+                <h2 id="surpriseTitle"></h2>
+                <p id="surpriseMessage"></p>
+            </div>
+        </div>
+    </div>
+
+    <script src="/js/app.js"></script>
+</body>
+</html>
